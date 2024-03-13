@@ -26,8 +26,7 @@ public class MusicInfo {
     @ManyToMany
     List<User> musicUser = new ArrayList<>();
 
-    public MusicInfo(long mid, String artistName, String songName, String mp3Link, int views, int likes, List<User> musicUser) {
-        this.mid = mid;
+    public MusicInfo(String artistName, String songName, String mp3Link, int views, int likes, List<User> musicUser) {
         this.artistName = artistName;
         this.songName = songName;
         this.mp3Link = mp3Link;

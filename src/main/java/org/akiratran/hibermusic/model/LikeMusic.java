@@ -5,21 +5,31 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
 @Setter
 @Getter
 @NoArgsConstructor
 @ToString
-
 public class LikeMusic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long lid;
-    @Column(nullable = false)
-    long id;
-    long mid;
+    Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    User user;
+
+    @ManyToOne
+    @JoinColumn(name = "music_id")
+    MusicInfo musicInfo;
+
+    LocalDateTime likeDate;
+
+    public LikeMusic(User user, MusicInfo musicInfo, LocalDateTime likeDate) {
+        this.user = user;
+        this.musicInfo = musicInfo;
+        this.likeDate = likeDate;
+    }
 }

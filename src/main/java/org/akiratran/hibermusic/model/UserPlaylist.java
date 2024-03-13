@@ -1,12 +1,10 @@
 package org.akiratran.hibermusic.model;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,20 +13,26 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @ToString
-
 public class UserPlaylist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long upid;
+    private Long pid;
+
     @Column(nullable = false)
-    String playListName;
-    long id;
-    long mid;
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL);
-    List<MusicInfo> musicForPlayList = new ArrayList<>();
+    private String playlistName;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL);
-    List<>
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
+    @ManyToMany
+    @JoinTable(name = "user_playlist_music",
+            joinColumns = @JoinColumn(name = "playlist_id"),
+            inverseJoinColumns = @JoinColumn(name = "music_id"))
+    private List<MusicInfo> musicInfos = new ArrayList<>();
 
+    public UserPlaylist(String playlistName, User user) {
+        this.playlistName = playlistName;
+        this.user = user;
+    }
 }

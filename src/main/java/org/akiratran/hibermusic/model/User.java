@@ -35,8 +35,7 @@ public class User {
     {@JoinColumn(name = "music_id", referencedColumnName = "mid")})
     public List<MusicInfo> userMusicInfo = new ArrayList<>();
 
-    public User(Long id, String firstName, String lastName, String email, String location, String password, List<MusicInfo> userMusicInfo) {
-        this.id = id;
+    public User(String firstName, String lastName, String email, String location, String password, List<MusicInfo> userMusicInfo) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
