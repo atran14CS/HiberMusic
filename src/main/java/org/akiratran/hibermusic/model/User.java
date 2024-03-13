@@ -32,16 +32,16 @@ public class User {
     joinColumns =
     {@JoinColumn(name = "user_id", referencedColumnName = "id")},
     inverseJoinColumns =
-    {@JoinColumn(name = "song_id", referencedColumnName = "sid")})
-    public List<Music> userMusic = new ArrayList<>();
+    {@JoinColumn(name = "music_id", referencedColumnName = "mid")})
+    public List<MusicInfo> userMusicInfo = new ArrayList<>();
 
-    public User(Long id, String firstName, String lastName, String email, String location, String password, List<Music> userMusic) {
+    public User(Long id, String firstName, String lastName, String email, String location, String password, List<MusicInfo> userMusicInfo) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.location = location;
         this.password = password;
-        this.userMusic = userMusic;
+        this.userMusicInfo = userMusicInfo;
     }
 }

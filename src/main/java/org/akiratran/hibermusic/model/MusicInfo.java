@@ -13,10 +13,10 @@ import java.util.*;
 @ToString
 
 
-public class Music {
+public class MusicInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long sid;
+    long mid;
     String artistName;
     String songName;
     String mp3Link;
@@ -26,8 +26,8 @@ public class Music {
     @ManyToMany
     List<User> musicUser = new ArrayList<>();
 
-    public Music(long sid, String artistName, String songName, String mp3Link, int views, int likes, List<User> musicUser) {
-        this.sid = sid;
+    public MusicInfo(long mid, String artistName, String songName, String mp3Link, int views, int likes, List<User> musicUser) {
+        this.mid = mid;
         this.artistName = artistName;
         this.songName = songName;
         this.mp3Link = mp3Link;
