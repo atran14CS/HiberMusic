@@ -15,7 +15,13 @@ public class UserController {
     }
 
     @GetMapping("/home")
-    public String showHome() {
+    public String homePage() {
         return "home";
     }
+
+    @GetMapping("/login")
+    public String loginPage() {
+        return "login";
+    }
+
 }

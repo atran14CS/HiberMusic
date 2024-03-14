@@ -32,16 +32,23 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "mid", referencedColumnName = "mid"))
     private List<MusicInfo> userMusicInfo = new ArrayList<>();
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "uid", referencedColumnName = "uid"),
+            inverseJoinColumns = @JoinColumn(name = "rid", referencedColumnName = "rid"))
+    private List<Role> userRole = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserPlaylist> playlists = new ArrayList<>();
 
-    public User(String firstName, String lastName, String email, String location, String password, List<MusicInfo> userMusicInfo) {
+    public User(String firstName, String lastName, String email, String location, String password, List<MusicInfo> userMusicInfo, List<Role> userRole, List<UserPlaylist> playlists) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.location = location;
         this.password = password;
         this.userMusicInfo = userMusicInfo;
+        this.userRole = userRole;
+        this.playlists = playlists;
     }
 }

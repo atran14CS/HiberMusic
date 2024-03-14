@@ -4,4 +4,5 @@ import org.akiratran.hibermusic.model.User;
 public interface UserService {
     void saveUser(User user);
     User findByUserId(Long id);
+    User findByUserEmail(String email);
 }

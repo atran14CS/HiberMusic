@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="login-form">
+  <input type="text" name="firstname" placeholder="First Name"  class="form-group">
+  <input type="text" name="lastname" placeholder="Last Name"  class="form-group">
+  <input type="tel" name="Zip" min="5" maxlength="5" id="ZipID"
+         placeholder="Enter Zip Code" pattern="\d{5}" title="Five digits only" required/>
+  <input type="text" name="email" placeholder="Email Address"  class="form-group"
+         pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$"
+         title="email adress must contain @">
+  <input type="password" name="password" placeholder="Password" class="form-group">
+  <button type="submit" id="signin-btn" class="form-group">Sign Up</button>
+  <button class="form-group" id="home-btn">Home</button>
+</form>
+</body>
+</html>

@@ -24,6 +24,8 @@ public class UserImpl implements UserService{
         user.setEmail(newUser.getEmail());
         user.setLocation(newUser.getLocation());
         user.setUserMusicInfo(newUser.getUserMusicInfo());
+        user.setPlaylists(newUser.getPlaylists());
+        user.setUserRole(newUser.getUserRole());
         user.setPassword(passwordEncoder.encode(newUser.getPassword()));
         userRepository.save(user);
     }
@@ -33,4 +35,7 @@ public class UserImpl implements UserService{
         return userRepository.findByUid(id);
     }
 
+    public User findByUserEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 }
