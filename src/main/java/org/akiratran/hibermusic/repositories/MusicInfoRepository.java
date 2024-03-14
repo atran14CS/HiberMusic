@@ -5,6 +5,6 @@ import org.akiratran.hibermusic.model.MusicInfo;
 
 public interface MusicInfoRepository extends JpaRepository<MusicInfo, Long> {
 
-    MusicInfo findByMusicId(long id);
+    MusicInfo findByMid(long mid);
 
 }

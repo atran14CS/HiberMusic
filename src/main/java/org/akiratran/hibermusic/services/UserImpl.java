@@ -3,7 +3,10 @@ package org.akiratran.hibermusic.services;
 import org.akiratran.hibermusic.model.User;
 import org.akiratran.hibermusic.repositories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
+
+@Service
 public class UserImpl implements UserService{
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
@@ -27,7 +30,7 @@ public class UserImpl implements UserService{
 
     @Override
     public User findByUserId(Long id) {
-        return userRepository.findByUserId(id);
+        return userRepository.findByUid(id);
     }
 
 }

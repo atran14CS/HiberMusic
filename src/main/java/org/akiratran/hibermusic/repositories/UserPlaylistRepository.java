@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 
-public interface UserPlaylistRepositrory extends JpaRepository<UserPlaylist, Long> {
-    UserPlaylist findByPlayListId(long id);
+public interface UserPlaylistRepository extends JpaRepository<UserPlaylist, Long> {
+    UserPlaylist findByPid(long pid);
 }

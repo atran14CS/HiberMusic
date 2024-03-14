@@ -22,14 +22,15 @@ public class UserPlaylist {
     private String playlistName;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "uid")
     private User user;
 
     @ManyToMany
-    @JoinTable(name = "user_playlist_music",
-            joinColumns = @JoinColumn(name = "playlist_id"),
-            inverseJoinColumns = @JoinColumn(name = "music_id"))
-    private List<MusicInfo> musicInfos = new ArrayList<>();
+    @JoinTable(name = "userplaylist_music",
+            joinColumns = @JoinColumn(name = "pid", referencedColumnName = "pid"),
+            inverseJoinColumns = @JoinColumn(name = "mid", referencedColumnName = "mid"))
+    private List<MusicInfo> musicInformation = new ArrayList<>();
+
 
     public UserPlaylist(String playlistName, User user) {
         this.playlistName = playlistName;

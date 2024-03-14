@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,17 +17,20 @@ import java.time.LocalDateTime;
 public class LikeMusic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long lid;
+
+    @CreationTimestamp
+    private LocalDateTime likeDate;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    User user;
+    @JoinColumn(name = "uid")
+    private User user;
 
     @ManyToOne
-    @JoinColumn(name = "music_id")
-    MusicInfo musicInfo;
+    @JoinColumn(name = "mid")
+    private MusicInfo musicInfo;
 
-    LocalDateTime likeDate;
+
 
     public LikeMusic(User user, MusicInfo musicInfo, LocalDateTime likeDate) {
         this.user = user;

@@ -12,19 +12,30 @@ import java.util.*;
 @NoArgsConstructor
 @ToString
 
-
 public class MusicInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long mid;
-    String artistName;
-    String songName;
-    String mp3Link;
-    int views;
-    int likes;
+    private long mid;
+    private String artistName;
+    private String songName;
+    private String mp3Link;
+    private int views;
+    private int likes;
 
-    @ManyToMany
-    List<User> musicUser = new ArrayList<>();
+//    @ManyToMany (mappedBy = "LikedMusic")
+//    private List<User> musicUser = new ArrayList<>();
+//
+//
+//    @ManyToMany(mappedBy = "musicInformation")
+//    List<UserPlaylist> playlists = new ArrayList<>();
+
+
+    @ManyToMany(mappedBy = "userMusicInfo")
+    private List<User> musicUser = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "musicInformation")
+    List<UserPlaylist> playlists = new ArrayList<>();
+
 
     public MusicInfo(String artistName, String songName, String mp3Link, int views, int likes, List<User> musicUser) {
         this.artistName = artistName;

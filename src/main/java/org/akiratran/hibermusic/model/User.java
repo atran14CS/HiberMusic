@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,25 +14,27 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 
-
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long uid;
     @Column(nullable = false)
-    String firstName;
-    String lastName;
-    String email;
-    String location;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String location;
     @Column(nullable = false, unique = true)
-    String password;
+    private String password;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_music",
-    joinColumns =
-    {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-    inverseJoinColumns =
-    {@JoinColumn(name = "music_id", referencedColumnName = "mid")})
-    public List<MusicInfo> userMusicInfo = new ArrayList<>();
+            joinColumns = @JoinColumn(name = "uid", referencedColumnName = "uid"),
+            inverseJoinColumns = @JoinColumn(name = "mid", referencedColumnName = "mid"))
+    private List<MusicInfo> userMusicInfo = new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserPlaylist> playlists = new ArrayList<>();
 
     public User(String firstName, String lastName, String email, String location, String password, List<MusicInfo> userMusicInfo) {
         this.firstName = firstName;
