@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+    <script src="login.js"></script>
+</head>
+<body>
+<form id="login-form">
+    <input type="text" name="email" placeholder="Email Address" class="form-group" id="email"
+           title="email must following the convention name@mail.com"
+           pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$"required/>
+    <input type="password" name="password" placeholder="Password" class="form-group" id="password">
+    <button type="submit" id="login-btn" class="form-group">Login</button>
+    <button class="form-group" id="home-btn">Home</button>
+</form>
+</body>
+</html>
