@@ -50,24 +50,4 @@ public class UserController {
         return "redirect:/signup?success";
     }
 
-//    @PostMapping("/register/save")
-//    public String registration(@Valid @ModelAttribute("student") StudentDto studentDto, BindingResult result,
-//                               Model model) {
-//        Student existingStudent = studentService.findStudentByEmail(studentDto.getEmail());
-//
-//        if (existingStudent != null && existingStudent.getEmail() != null && !existingStudent.getEmail().isEmpty()) {
-//            result.rejectValue("email", null, "There is already an account registered with the same email");
-//        }
-//
-//        if (result.hasErrors()) {
-//            model.addAttribute("student", studentDto);
-//
-//            return "/register";
-//        }
-//
-//        studentService.saveStudent(studentDto);
-//        return "redirect:/register?success";
-//
-//    }
-
 }

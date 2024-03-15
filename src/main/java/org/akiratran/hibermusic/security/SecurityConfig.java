@@ -21,7 +21,7 @@ public class SecurityConfig {
 
         http.csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests((authz) -> authz
-                        .requestMatchers("/signup").permitAll()
+                        .requestMatchers("/signup/**").permitAll()
                         .requestMatchers("/home").permitAll()
                         .requestMatchers("/user").hasRole("ADMIN")
                 )
