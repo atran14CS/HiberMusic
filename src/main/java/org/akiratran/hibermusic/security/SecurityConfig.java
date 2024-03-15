@@ -21,9 +21,9 @@ public class SecurityConfig {
 
         http.csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests((authz) -> authz
-                        .requestMatchers("/register/**").permitAll()
+                        .requestMatchers("/signup").permitAll()
                         .requestMatchers("/home").permitAll()
-//                        .requestMatchers("/students").hasRole("ADMIN")
+                        .requestMatchers("/user").hasRole("ADMIN")
                 )
                 .formLogin(
                         form -> form
