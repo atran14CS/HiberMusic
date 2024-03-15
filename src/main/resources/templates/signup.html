@@ -6,6 +6,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
+<style>
+    #nav-bar {
+        margin-top: 5%;
+    }
+</style>
 <body>
 <form>
     <nav class="navbar navbar-dark bg-dark fixed-top">
@@ -43,55 +48,48 @@
             </div>
         </div>
     </nav>
-    <form class="needs-validation" novalidate>
+    <form class="needs-validation" method="post" novalidate id="nav-bar" th:action="@{/signup/save}" th:object="${newUser}">
         <div class="form-row">
             <div class="col-md-4 mb-3">
                 <label for="validationCustom01">First name</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" required>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="" required th:field="*{firstName}">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
             <div class="col-md-4 mb-3">
                 <label for="validationCustom02">Last name</label>
-                <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required>
+                <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="" required th:field="*{lastName}">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
             <div class="col-md-4 mb-3">
-                <label for="validationCustomUsername">Username</label>
+                <label for="validationCustom03">Password</label>
+                <input type="password" class="form-control" id="validationCustom03" placeholder="Password" value="" required th:field="*{password}">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationCustomUsername">Email</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
                     </div>
-                    <input type="text" class="form-control" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
+                    <input type="text" class="form-control" id="validationCustomUsername" placeholder="Email" aria-describedby="inputGroupPrepend" required th:field="*{email}">
                     <div class="invalid-feedback">
-                        Please choose a username.
+                        Please choose an email.
                     </div>
                 </div>
             </div>
         </div>
         <div class="form-row">
-            <div class="col-md-6 mb-3">
-                <label for="validationCustom03">City</label>
-                <input type="text" class="form-control" id="validationCustom03" placeholder="City" required>
+            <div class="col-md-3 mb-3">
+                <label for="validationCustom04">City</label>
+                <input type="text" class="form-control" id="validationCustom04" placeholder="City" required th:field="*{location}">
                 <div class="invalid-feedback">
                     Please provide a valid city.
-                </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <label for="validationCustom04">State</label>
-                <input type="text" class="form-control" id="validationCustom04" placeholder="State" required>
-                <div class="invalid-feedback">
-                    Please provide a valid state.
-                </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <label for="validationCustom05">Zip</label>
-                <input type="text" class="form-control" id="validationCustom05" placeholder="Zip" required>
-                <div class="invalid-feedback">
-                    Please provide a valid zip.
                 </div>
             </div>
         </div>
@@ -132,108 +130,3 @@
 </form>
 </body>
 </html>
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en"-->
-<!--      xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Student Registration and Login System</title>-->
-<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"-->
-<!--          rel="stylesheet"-->
-<!--          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"-->
-<!--          crossorigin="anonymous">-->
-<!--</head>-->
-<!--<body>-->
-<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">-->
-<!--    <div class="container-fluid">-->
-<!--        <a class="navbar-brand" th:href="@{/index}">Student Registration and Login System</a>-->
-<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--            <span class="navbar-toggler-icon"></span>-->
-<!--        </button>-->
-<!--        <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-<!--            <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link active" aria-current="page" th:href="@{/login}">Login</a>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</nav>-->
-<!--<br /><br /><br />-->
-<!--<div class="container">-->
-<!--    <div class="row col-md-8 offset-md-2">-->
-<!--        <div class="card">-->
-<!--            <div class="card-header">-->
-<!--                <h2 class="text-center">Registration</h2>-->
-<!--            </div>-->
-<!--            <div th:if="${param.success}">-->
-<!--                <div class="alert alert-info">-->
-<!--                    You have successfully registered our app!-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="card-body">-->
-<!--                <form-->
-<!--                        method="post"-->
-<!--                        role="form"-->
-<!--                        th:action="@{/register/save}"-->
-<!--                        th:object="${student}"-->
-<!--                >-->
-<!--                    <div class="form-group mb-3">-->
-<!--                        <label class="form-label">First Name</label>-->
-<!--                        <input class="form-control" id="firstName" name="firstName" placeholder="Enter first name" th:field="*{firstName}" type="text"/>-->
-<!--                        <p th:errors = "*{firstName}" class="text-danger" th:if="${#fields.hasErrors('firstName')}"></p>-->
-<!--                    </div>-->
-
-<!--                    <div class="form-group mb-3">-->
-<!--                        <label class="form-label">Last Name</label>-->
-<!--                        <input-->
-<!--                                class="form-control"-->
-<!--                                id="lastName"-->
-<!--                                name="lastName"-->
-<!--                                placeholder="Enter last name"-->
-<!--                                th:field="*{lastName}"-->
-<!--                                type="text"-->
-<!--                        />-->
-<!--                        <p th:errors = "*{lastName}" class="text-danger"-->
-<!--                           th:if="${#fields.hasErrors('lastName')}"></p>-->
-<!--                    </div>-->
-
-<!--                    <div class="form-group mb-3">-->
-<!--                        <label class="form-label">Email</label>-->
-<!--                        <input-->
-<!--                                class="form-control"-->
-<!--                                id="email"-->
-<!--                                name="email"-->
-<!--                                placeholder="Enter email address"-->
-<!--                                th:field="*{email}"-->
-<!--                                type="email"-->
-<!--                        />-->
-<!--                        <p th:errors = "*{email}" class="text-danger"-->
-<!--                           th:if="${#fields.hasErrors('email')}"></p>-->
-<!--                    </div>-->
-
-<!--                    <div class="form-group mb-3">-->
-<!--                        <label class="form-label">Password</label>-->
-<!--                        <input-->
-<!--                                class="form-control"-->
-<!--                                id="password"-->
-<!--                                name="password"-->
-<!--                                placeholder="Enter password"-->
-<!--                                th:field="*{password}"-->
-<!--                                type="password"-->
-<!--                        />-->
-<!--                        <p th:errors = "*{password}" class="text-danger"-->
-<!--                           th:if="${#fields.hasErrors('password')}"></p>-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <button class="btn btn-primary" type="submit">Register</button>-->
-<!--                        <span>Already registered? <a th:href="@{/login}">Login here</a></span>-->
-<!--                    </div>-->
-<!--                </form>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->

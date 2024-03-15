@@ -21,20 +21,28 @@ public class SecurityConfig {
 
         http.csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests((authz) -> authz
-                        .requestMatchers("/signup/**").permitAll()
-                        .requestMatchers("/home").permitAll()
-                        .requestMatchers("/user").hasRole("ADMIN")
+                    .requestMatchers("/signup/**").permitAll()
+                    .requestMatchers("/home").permitAll()
+                    .requestMatchers("/user").hasRole("ADMIN")
                 )
                 .formLogin(
-                        form -> form
-                                .loginPage("/login")
-                                .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/home")
-                                .permitAll()
-                ).logout(
-                        logout -> logout
-                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                                .permitAll());
+                form -> form
+                .loginPage("/login")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/home")
+                .permitAll()
+                )
+                .formLogin(
+                form -> form
+                .loginPage("/signup")
+                .loginProcessingUrl("/signup")
+                .defaultSuccessUrl("/home")
+                .permitAll()
+                )
+                .logout(
+                logout -> logout
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .permitAll());
         return http.build();
     }
 }
