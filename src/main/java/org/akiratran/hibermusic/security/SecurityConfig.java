@@ -32,13 +32,6 @@ public class SecurityConfig {
                 .defaultSuccessUrl("/home")
                 .permitAll()
                 )
-                .formLogin(
-                form -> form
-                .loginPage("/signup")
-                .loginProcessingUrl("/signup")
-                .defaultSuccessUrl("/home")
-                .permitAll()
-                )
                 .logout(
                 logout -> logout
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
