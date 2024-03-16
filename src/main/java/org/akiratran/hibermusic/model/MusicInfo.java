@@ -22,14 +22,6 @@ public class MusicInfo {
     private int views;
     private int likes;
 
-//    @ManyToMany (mappedBy = "LikedMusic")
-//    private List<User> musicUser = new ArrayList<>();
-//
-//
-//    @ManyToMany(mappedBy = "musicInformation")
-//    List<UserPlaylist> playlists = new ArrayList<>();
-
-
     @ManyToMany(mappedBy = "userMusicInfo")
     private List<User> musicUser = new ArrayList<>();
 
