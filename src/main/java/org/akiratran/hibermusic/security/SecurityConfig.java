@@ -1,5 +1,6 @@
 package org.akiratran.hibermusic.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,6 +11,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 public class SecurityConfig {
+    private CustomUserDetailsService userDetailService;
+
+    @Autowired
+    public SecurityConfig(CustomUserDetailsService userDetailsService) {
+        this.userDetailService = userDetailsService;
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -23,13 +30,15 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authz) -> authz
                     .requestMatchers("/signup/**").permitAll()
                     .requestMatchers("/home").permitAll()
-                    .requestMatchers("/user").hasRole("ADMIN")
+                    .requestMatchers("/profile").authenticated()
+                    .requestMatchers("/user").hasRole("USER")
                 )
                 .formLogin(
                 form -> form
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/home")
+                .failureUrl("/login?error=true")
+                .defaultSuccessUrl("/profile")
                 .permitAll()
                 )
                 .logout(
@@ -38,5 +47,6 @@ public class SecurityConfig {
                 .permitAll());
         return http.build();
     }
+
 }
 

@@ -30,6 +30,12 @@ public class UserController {
         return "login";
     }
 
+
+    @GetMapping("/profile")
+    public String profile() {
+        return "profile";
+    }
+
     @GetMapping("/signup")
     public String signupPage(Model model) {
         User newUser = new User();
@@ -50,7 +56,7 @@ public class UserController {
             return "/signup";
         }
         userService.saveUser(newUser);
-        return "redirect:/home";
+        return "redirect:/signup?success";
     }
 
 }
