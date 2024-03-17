@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
 import java.util.*;
+
 @Entity
 @Setter
 @Getter
@@ -29,12 +31,14 @@ public class MusicInfo {
     List<UserPlaylist> playlists = new ArrayList<>();
 
 
-    public MusicInfo(String artistName, String songName, String mp3Link, int views, int likes, List<User> musicUser) {
+    public MusicInfo(String artistName, String songName, String mp3Link, int views, int likes, List<User> musicUser,
+                     List<UserPlaylist> playlists) {
         this.artistName = artistName;
         this.songName = songName;
         this.mp3Link = mp3Link;
         this.views = views;
         this.likes = likes;
         this.musicUser = musicUser;
+        this.playlists = playlists;
     }
 }
