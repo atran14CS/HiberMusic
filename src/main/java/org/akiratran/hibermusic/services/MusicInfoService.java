@@ -4,6 +4,9 @@ import org.akiratran.hibermusic.model.MusicInfo;
 
 import java.util.List;
 
+/**
+ * layout for MusicInfoImpl
+ */
 
 public interface MusicInfoService {
     MusicInfo findMusicInfoByMid(Long mid);

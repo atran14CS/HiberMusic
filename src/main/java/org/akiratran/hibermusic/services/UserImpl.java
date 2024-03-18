@@ -5,7 +5,9 @@ import org.akiratran.hibermusic.repositories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-
+/**
+ * Provides implemented methods of actions to be used in controller
+ */
 @Service
 public class UserImpl implements UserService{
     private UserRepository userRepository;
@@ -16,6 +18,10 @@ public class UserImpl implements UserService{
         this.passwordEncoder = passwordEncoder;
     }
 
+    /**
+     * Takes a new User and saves the new User information
+     * @param newUser - The user being saved
+     */
     @Override
     public void saveUser(User newUser) {
         User user = new User();
@@ -30,11 +36,21 @@ public class UserImpl implements UserService{
         userRepository.save(user);
     }
 
+    /**
+     * Finds and return User of given id
+     * @param id - id of User
+     * @return {object} - User object that matches id
+     */
     @Override
     public User findByUserId(Long id) {
         return userRepository.findByUid(id);
     }
 
+    /**
+     * Finds and returns the User of the given email
+     * @param email - email of user
+     * @return {object} - User object that matches email
+     */
     public User findByUserEmail(String email) {
         return userRepository.findByEmail(email);
     }
