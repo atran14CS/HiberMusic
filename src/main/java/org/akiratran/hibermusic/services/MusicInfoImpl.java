@@ -4,6 +4,8 @@ import org.akiratran.hibermusic.model.MusicInfo;
 import org.akiratran.hibermusic.repositories.MusicInfoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MusicInfoImpl implements MusicInfoService{
     private MusicInfoRepository musicInfoRepository;
@@ -18,8 +20,13 @@ public class MusicInfoImpl implements MusicInfoService{
     }
 
     @Override
-    public MusicInfo findMusicInfoBySongName(String songName) {
+    public List<MusicInfo> findMusicInfoBySongName(String songName) {
         return musicInfoRepository.findBySongName(songName);
+    }
+
+    @Override
+    public List<MusicInfo> findMusicInfoByArtistName(String artistName) {
+        return musicInfoRepository.findByArtistName(artistName);
     }
 
     public void saveMusicInfo(MusicInfo newMusicInfo) {

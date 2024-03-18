@@ -3,8 +3,13 @@ package org.akiratran.hibermusic.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.akiratran.hibermusic.model.MusicInfo;
 
+import java.util.List;
+
 public interface MusicInfoRepository extends JpaRepository<MusicInfo, Long> {
     MusicInfo findByMid(long mid);
-    MusicInfo findBySongName(String songName);
+    List<MusicInfo> findBySongName(String songName);
+    List<MusicInfo> findByArtistName(String artistName);
     MusicInfo save(MusicInfo musicInfo);
+
+
 }
