@@ -10,6 +10,4 @@ public interface MusicInfoRepository extends JpaRepository<MusicInfo, Long> {
     List<MusicInfo> findBySongName(String songName);
     List<MusicInfo> findByArtistName(String artistName);
     MusicInfo save(MusicInfo musicInfo);
-
-
 }

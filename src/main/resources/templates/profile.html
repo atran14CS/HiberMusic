@@ -54,7 +54,7 @@
     <button id="create-btn">Create Playlist!</button>
     <section class="create-box" id="form-hidden">
         <h1>Welcome Back!</h1>
-        <form class="d-flex mt-3" role="search" method="post" th:action="@{profile/search}">
+        <form class="d-flex mt-3" role="search" method="post" th:action="@{/profile/search}" th:object="${newMusicInfo}">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-success" type="submit">Search</button>
         </form>
@@ -62,6 +62,33 @@
             <p>Find Music with Arist or Song Name</p>
         </div>
     </section>
+    <div class="container">
+        <h1>Search Results</h1>
+        <!-- Check if musicInfoResult is empty -->
+        <div th:if="${not #lists.isEmpty(musicInfoResult)}">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Song Name</th>
+                    <th>Artist Name</th>
+                    <!-- Add more table headers if needed -->
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Iterate over the musicInfoResult list -->
+                <tr th:each="musicInfo : ${musicInfoResult}">
+                    <td th:text="${musicInfo.songName}">Song Name</td>
+                    <td th:text="${musicInfo.artistName}">Artist Name</td>
+                    <!-- Add more table cells if needed -->
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Display error messages if musicInfoResult is empty -->
+<!--        <div th:if="${#lists.isEmpty(musicInfoResult)}">-->
+<!--            <p>No results found.</p>-->
+<!--        </div>-->
+    </div>
     <script>
         document.getElementById("create-btn").addEventListener("click", function() {
             let createBox = document.getElementById("form-hidden");

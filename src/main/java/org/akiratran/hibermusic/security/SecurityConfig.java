@@ -32,6 +32,7 @@ public class SecurityConfig {
                     .requestMatchers("/home").permitAll()
                     .requestMatchers("/profile").authenticated()
                     .requestMatchers("/user").hasRole("USER")
+                    .requestMatchers("/profile/search").permitAll()
                 )
                 .formLogin(
                 form -> form

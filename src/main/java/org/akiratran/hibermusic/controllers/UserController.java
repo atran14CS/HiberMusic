@@ -47,11 +47,11 @@ public class UserController {
     public String createUser(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, Model model) {
         User existingUser = userService.findByUserEmail(newUser.getEmail());
         if(existingUser != null && existingUser.getEmail() != null && !existingUser.getEmail().isEmpty()) {
-            System.out.println("user exist");
+            System.out.println("user exist"); //help debug statement
             result.rejectValue("email", "null", "There is already an account with the given email");
         }
         if(result.hasErrors()) {
-            System.out.println("error happened");
+            System.out.println("error happened"); //debug statement
             model.addAttribute("newUser", newUser);
             return "/signup";
         }
