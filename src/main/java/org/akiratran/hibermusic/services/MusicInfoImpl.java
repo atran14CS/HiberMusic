@@ -48,6 +48,11 @@ public class MusicInfoImpl implements MusicInfoService{
         return musicInfoRepository.findByArtistName(artistName);
     }
 
+    @Override
+    public List<MusicInfo> findMusicInfoBySongNameOrArtistName(String searchPhrase) {
+        return musicInfoRepository.findBySongNameOrArtistName(searchPhrase);
+    }
+
     /**
      * Saves new music infos
      * @param newMusicInfo
