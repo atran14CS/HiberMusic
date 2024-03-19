@@ -87,5 +87,4 @@ public class UserController {
         userService.saveUser(newUser);
         return "redirect:/signup?success";
     }
-
 }

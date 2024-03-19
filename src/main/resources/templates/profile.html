@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
@@ -85,10 +85,21 @@
         </div>
         <section class="current-playlists">
             <h1>Current Playlist</h1>
-            <form class="d-flex mt-3" role="search" method="post" th:action="@{/profile/search}">
-                <input class="form-control me-2" type="search" name="searchPhrase" placeholder="Playlist Name" aria-label="Search">
-                <button class="btn btn-success" type="submit">Create!</button>
-            </form>
+            <div>
+                <table class="table">
+                    <td>Artist</td>
+                    <td>Song Title</td>
+                    <tbody>
+                    <tr th:each="song : ${currentPlaylist}">
+                        <td th:text="${song.artistName}">Artist Name</td>
+                        <td th:text="${song.songName}">Song Title</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+<!--            <div th:if="${currentPlaylist.isEmpty()}">-->
+<!--                <p>No songs in the current playlist</p>-->
+<!--            </div>-->
         </section>
     </div>
     <script>

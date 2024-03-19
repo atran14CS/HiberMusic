@@ -37,40 +37,21 @@ public class UserPlaylistController {
     }
 
 
-
-
-
-
     @PostMapping("/profile/addToPlaylist")
-    public String addToPlaylist(@RequestParam("mid") Long mid, Principal principal) {
+    public String addToPlaylist(@RequestParam("mid") Long mid, Model model) {
         // find the adding music
         System.out.println(mid); //debug statement
         MusicInfo clickedMusicInfo = musicInfoService.findMusicInfoByMid(mid);
 
         //create and add to playlist
         UserPlaylist newPlaylist = new UserPlaylist();
-        List<MusicInfo> currentList = newPlaylist.getMusicInformation();
-        currentList.add(clickedMusicInfo);
-        System.out.println(currentList);
-//        newPlaylist.setMusicInformation(currentList);
+        List<MusicInfo> currentPlaylist = newPlaylist.getMusicInformation();
+        currentPlaylist.add(clickedMusicInfo);
+        System.out.println(currentPlaylist);
 
-        //add playlist to current logged-in user
-        String currentName = principal.getName();
-        System.out.println(currentName); //debug statement
-        User currentUser = userService.findByUserEmail(currentName);
-        System.out.println(currentUser.toString()); //debug statement;
-//        currentUser.getPlaylists().add(newPlaylist);
+        model.addAttribute("currentPlaylist", currentPlaylist);
 
 
-
-
-//        MusicInfo musicInfo = musicInfoService.findMusicInfoByMid(mid);
-//        userPlaylistService.addMusicToCurrentUserPlaylist(musicInfo, currentUser);
-//        System.out.println(currentUser.getPlaylists());
-        // Add the MusicInfo to the user's playlist
-        // (Assuming you have a method in your service to add MusicInfo to a playlist)
-        // Example: userPlaylistService.addMusicInfoToPlaylist(musicInfo, user);
-        // Redirect back to the profile page
-        return "redirect:/profile";
+        return "/profile";
     }
 }

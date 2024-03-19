@@ -30,17 +30,17 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authz) -> authz
                     .requestMatchers("/signup/**").permitAll()
                     .requestMatchers("/home").permitAll()
-                    .requestMatchers("/profile").authenticated()
-                    .requestMatchers("/user").hasRole("USER")
-                    .requestMatchers("/profile/search").permitAll()
-                    .requestMatchers("/profile/addToPlaylist").permitAll()
+                    .requestMatchers("/home").hasRole("USER").anyRequest().authenticated()
+//                    .requestMatchers("/profile").authenticated()
+//                    .requestMatchers("/profile/search").permitAll()
+//                    .requestMatchers("/profile/addToPlaylist").permitAll()
                 )
                 .formLogin(
                 form -> form
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
-                .failureUrl("/login?error=true")
                 .defaultSuccessUrl("/profile")
+                .failureUrl("/login?error=true")
                 .permitAll()
                 )
                 .logout(

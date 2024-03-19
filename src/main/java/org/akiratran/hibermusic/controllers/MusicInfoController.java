@@ -57,7 +57,7 @@ public class MusicInfoController {
         if(result.hasErrors()) {
             System.out.println("no results"); //debug statement
         }
-        System.out.println(musicInfoResult);
+        System.out.println(musicInfoResult);//debug statement
         model.addAttribute("musicInfoResult", musicInfoResult);
         return "profile";
     }
