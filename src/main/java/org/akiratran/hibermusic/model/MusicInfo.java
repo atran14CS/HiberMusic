@@ -8,6 +8,10 @@ import lombok.ToString;
 
 import java.util.*;
 
+/**
+ * MusicInfo Model Class describes what a MusicInfo is and the relationship between other entities
+ */
+
 @Entity
 @Setter
 @Getter

@@ -1,8 +1,12 @@
 package org.akiratran.hibermusic.services;
 
+import org.akiratran.hibermusic.model.MusicInfo;
+import org.akiratran.hibermusic.model.User;
 import org.akiratran.hibermusic.model.UserPlaylist;
 import org.akiratran.hibermusic.repositories.UserPlaylistRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserPlaylistImpl implements UserPlaylistService{
     private UserPlaylistRepository userPlaylistRepository;
 
@@ -35,5 +39,15 @@ public class UserPlaylistImpl implements UserPlaylistService{
 
     public void deleteUserPlaylistByPid(Long pid) {
         userPlaylistRepository.deleteUserPlaylistByPid(pid);
+    }
+
+    @Override
+    public void addMusicToCurrentUserPlaylist(MusicInfo musicInfo, User user) {
+        // Fetch the current user's playlist
+        UserPlaylist userPlaylist = userPlaylistRepository.findByUser(user);
+        // Add the selected music to the playlist
+        userPlaylist.getMusicInformation().add(musicInfo);
+        // Save the updated playlist
+        userPlaylistRepository.save(userPlaylist);
     }
 }

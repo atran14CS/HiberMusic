@@ -8,6 +8,10 @@ import lombok.ToString;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Role Model Class describes what a Role is and the relationship between other entities
+ */
+
 @Entity
 @Setter
 @Getter

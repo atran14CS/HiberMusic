@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controls the different endpoints around musicInfo
+ */
+
 @Controller
 public class MusicInfoController {
     private MusicInfoService musicInfoService;
@@ -22,7 +26,6 @@ public class MusicInfoController {
     public MusicInfoController(MusicInfoService musicInfoService) {
         this.musicInfoService = musicInfoService;
     }
-
 
     /**
      * Retrieves the new MusicInfo from the profile view to be further processes in /profile/search
@@ -36,42 +39,26 @@ public class MusicInfoController {
         return "profile";
     }
 
+    /**
+     * Given a search phrase finds if MusicInfo table contains songName or ArtistName like searchPhrase and return
+     * the view and the data with according to the searchPhrase
+     * @param searchPhrase {String} - A string representing the search phrase
+     * @param result {Object} - Result object contains information about the results of the query reject or non reject
+     * @param model {Object} - Model object contains the search results of the MusicInfos.
+     * @return {String} - returns the string profile to be directed to the profile view page
+     */
     @PostMapping("/profile/search")
     public String searchMusicInfo(@ModelAttribute("searchPhrase") String searchPhrase, BindingResult result, Model model) {
-        System.out.println(searchPhrase);
         List<MusicInfo> musicInfoResult = musicInfoService.findMusicInfoBySongNameOrArtistName(searchPhrase);
         if(musicInfoResult.isEmpty()) {
             result.rejectValue("songName", "null", "No MusicInfo was found using songName");
             result.rejectValue("artistName", "null", "No MusicInfo was found using artistName");
         }
         if(result.hasErrors()) {
-            System.out.println("no results");
+            System.out.println("no results"); //debug statement
         }
         System.out.println(musicInfoResult);
         model.addAttribute("musicInfoResult", musicInfoResult);
-
-//        List<MusicInfo> musicInfoResult = new ArrayList<>();
-//        List<MusicInfo> songList = musicInfoService.findMusicInfoBySongNameOrArtistName(newMusicInfo.getSongName());
-//        System.out.println("song list" + songList);
-//        if(!songList.isEmpty()) {
-//            System.out.println("song found"); //debug statement
-//            musicInfoResult.addAll(songList);
-//        }
-//        List<MusicInfo> artistlist = musicInfoService.findMusicInfoBySongNameOrArtistName(newMusicInfo.getArtistName());
-//        System.out.println("artist list" + artistlist);
-//        if(!artistlist.isEmpty()) {
-//            System.out.println("artists found"); //debug statement
-//            musicInfoResult.addAll(artistlist);
-//        }
-//        if(musicInfoResult.isEmpty()) {
-//            result.rejectValue("songName", "null", "No MusicInfo was found using songName");
-//            result.rejectValue("artistName", "null", "No MusicInfo was found using artistName");
-//        }
-//        System.out.println(musicInfoResult);
-//        // Always add the newMusicInfo object to the model
-//        model.addAttribute("newMusicInfo", newMusicInfo);
-//        // Add the list of MusicInfo objects to the model
-//        model.addAttribute("musicInfoResult", musicInfoResult);
-        return "profile"; // Return the name of your Thymeleaf template
+        return "profile";
     }
 }

@@ -67,10 +67,10 @@ public class UserController {
     /**
      * Creates a new user checking to make sure the user does not exist and redirects to a success url if
      * user does not exist and returns back to the signup if user does exist.
-     * @param newUser -
-     * @param result -
-     * @param model -
-     * @return {String} -
+     * @param newUser {Object} - User object holds information about the new user signing up
+     * @param result {Object} -  Result object contains information about the results of the query reject or non reject
+     * @param model {Object} - Model object contains the search results of the newUser.
+     * @return {String} - Returns to the success signup if newUser was able to be created or back to just signup
      */
     @PostMapping("/signup/save")
     public String createUser(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, Model model) {

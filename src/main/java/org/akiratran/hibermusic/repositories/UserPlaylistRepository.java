@@ -4,7 +4,7 @@ import org.akiratran.hibermusic.model.UserPlaylist;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Provides Jpa methods to run sql query on USER table.
+ * Provides JPA methods to run sql query on USER table.
  */
 
 public interface UserPlaylistRepository extends JpaRepository<UserPlaylist, Long> {
@@ -13,5 +13,5 @@ public interface UserPlaylistRepository extends JpaRepository<UserPlaylist, Long
     UserPlaylist save(UserPlaylist userPlaylist);
     UserPlaylist deleteUserPlaylistByPlaylistName(String playlistName);
     UserPlaylist deleteUserPlaylistByPid(Long pid);
-
+    UserPlaylist findByUser(User user);
 }

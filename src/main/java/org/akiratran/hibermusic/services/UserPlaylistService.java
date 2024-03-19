@@ -1,5 +1,7 @@
 package org.akiratran.hibermusic.services;
 
+import org.akiratran.hibermusic.model.MusicInfo;
+import org.akiratran.hibermusic.model.User;
 import org.akiratran.hibermusic.model.UserPlaylist;
 
 public interface UserPlaylistService {
@@ -8,4 +10,5 @@ public interface UserPlaylistService {
     UserPlaylist findByUserPlaylistPid(Long pid);
     void deleteUserPlaylistByName(String userPlayListName);
     void deleteUserPlaylistByPid(Long pid);
+    void addMusicToCurrentUserPlaylist(MusicInfo musicInfo, User user);
 }

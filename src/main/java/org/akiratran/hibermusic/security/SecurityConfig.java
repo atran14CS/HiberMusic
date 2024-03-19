@@ -33,6 +33,7 @@ public class SecurityConfig {
                     .requestMatchers("/profile").authenticated()
                     .requestMatchers("/user").hasRole("USER")
                     .requestMatchers("/profile/search").permitAll()
+                    .requestMatchers("/profile/addToPlaylist").permitAll()
                 )
                 .formLogin(
                 form -> form

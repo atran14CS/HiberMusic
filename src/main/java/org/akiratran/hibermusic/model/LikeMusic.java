@@ -9,6 +9,10 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
+/**
+ * LikeMusic Model Class Describes what a LikeMusic is and the relationship between other entities
+ */
+
 @Entity
 @Setter
 @Getter

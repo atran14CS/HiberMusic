@@ -8,6 +8,11 @@ import lombok.ToString;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * UserPlaylist Model Class describes what a UserPlaylist is and the relationship it has
+ * with other entities
+ */
+
 @Entity
 @Setter
 @Getter
@@ -31,9 +36,9 @@ public class UserPlaylist {
             inverseJoinColumns = @JoinColumn(name = "mid", referencedColumnName = "mid"))
     private List<MusicInfo> musicInformation = new ArrayList<>();
 
-
-    public UserPlaylist(String playlistName, User user) {
+    public UserPlaylist(String playlistName, User user, List<MusicInfo> musicInformation) {
         this.playlistName = playlistName;
         this.user = user;
+        this.musicInformation = musicInformation;
     }
 }

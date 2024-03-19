@@ -19,13 +19,13 @@
 <body>
     <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" th:href="@{/home}">PlaylistPulse</a>
+            <a class="navbar-brand">Profile</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel" th:href="@{/home}">PlaylistPulse</h5>
+                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">PlaylistPulse</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
@@ -64,19 +64,32 @@
     </section>
     <div class="container">
         <h1>Search Results</h1>
-        <!-- Check if musicInfoResult is empty -->
         <div th:if="${musicInfoResult}">
             <table class="table">
-                <!-- Table header -->
+                <td>Artist</td>
+                <td>Song Title</td>
+                <td>Add To Playlist</td>
                 <tbody>
                 <tr th:each="musicInfo : ${musicInfoResult}">
-                    <td th:text="${musicInfo.songName}">Song Name</td>
                     <td th:text="${musicInfo.artistName}">Artist Name</td>
-                    <!-- Add more table cells if needed -->
+                    <td th:text="${musicInfo.songName}">Song Name</td>
+                    <td>
+                        <form th:action="@{/profile/addToPlaylist}" method="post">
+                            <input type="hidden" name="mid" th:value="${musicInfo.mid}">
+                            <button type="submit">Add</button>
+                        </form>
+                    </td>
                 </tr>
                 </tbody>
             </table>
         </div>
+        <section class="current-playlists">
+            <h1>Current Playlist</h1>
+            <form class="d-flex mt-3" role="search" method="post" th:action="@{/profile/search}">
+                <input class="form-control me-2" type="search" name="searchPhrase" placeholder="Playlist Name" aria-label="Search">
+                <button class="btn btn-success" type="submit">Create!</button>
+            </form>
+        </section>
     </div>
     <script>
         document.getElementById("create-btn").addEventListener("click", function() {
