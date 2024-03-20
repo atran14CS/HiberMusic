@@ -84,22 +84,24 @@
             </table>
         </div>
         <section class="current-playlists">
-            <h1>Current Playlist</h1>
+            <h1>Temporary Playlist</h1>
             <div>
                 <table class="table">
-                    <td>Artist</td>
-                    <td>Song Title</td>
+                    <thead>
+                    <tr>
+                        <th>Artist</th>
+                        <th>Song Title</th>
+                    </tr>
+                    </thead>
                     <tbody>
-                    <tr th:each="song : ${currentPlaylist}">
+                    <!-- Loop through each song in the temporary playlist -->
+                    <tr th:each="song : ${temporaryPlaylist}">
                         <td th:text="${song.artistName}">Artist Name</td>
                         <td th:text="${song.songName}">Song Title</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-<!--            <div th:if="${currentPlaylist.isEmpty()}">-->
-<!--                <p>No songs in the current playlist</p>-->
-<!--            </div>-->
         </section>
     </div>
     <script>

@@ -5,5 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface LikeMusicRepository extends JpaRepository<LikeMusic, Long> {
     LikeMusic findByLid(Long lid);
+    LikeMusic save(LikeMusic likeMusic);
 
 }

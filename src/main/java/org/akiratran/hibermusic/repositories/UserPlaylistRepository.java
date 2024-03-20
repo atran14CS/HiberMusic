@@ -1,4 +1,5 @@
 package org.akiratran.hibermusic.repositories;
+import org.akiratran.hibermusic.model.MusicInfo;
 import org.akiratran.hibermusic.model.User;
 import org.akiratran.hibermusic.model.UserPlaylist;
 import org.springframework.data.jpa.repository.JpaRepository;

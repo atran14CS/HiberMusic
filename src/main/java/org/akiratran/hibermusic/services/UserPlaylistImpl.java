@@ -6,12 +6,17 @@ import org.akiratran.hibermusic.model.UserPlaylist;
 import org.akiratran.hibermusic.repositories.UserPlaylistRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserPlaylistImpl implements UserPlaylistService{
     private UserPlaylistRepository userPlaylistRepository;
 
-    public UserPlaylistImpl(UserPlaylistRepository userPlaylistRepository) {
+    private List<MusicInfo> currentPlay;
+
+    public UserPlaylistImpl(UserPlaylistRepository userPlaylistRepository, List<MusicInfo> currentPlay) {
         this.userPlaylistRepository = userPlaylistRepository;
+        this.currentPlay = currentPlay;
     }
 
     @Override
@@ -49,5 +54,11 @@ public class UserPlaylistImpl implements UserPlaylistService{
         userPlaylist.getMusicInformation().add(musicInfo);
         // Save the updated playlist
         userPlaylistRepository.save(userPlaylist);
+    }
+
+    @Override
+    public List<MusicInfo> currentPlaylist(MusicInfo musicInfo) {
+        currentPlay.add(musicInfo);
+        return currentPlay;
     }
 }
