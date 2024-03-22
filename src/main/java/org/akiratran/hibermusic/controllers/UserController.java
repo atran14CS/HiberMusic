@@ -1,7 +1,9 @@
 package org.akiratran.hibermusic.controllers;
 
 import jakarta.validation.Valid;
+import org.akiratran.hibermusic.model.MusicInfo;
 import org.akiratran.hibermusic.model.User;
+import org.akiratran.hibermusic.services.MusicInfoService;
 import org.akiratran.hibermusic.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 /**
  * Controls the different url endpoints, each endpoint returns a different view
@@ -19,19 +24,49 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class UserController {
     private UserService userService;
+    private MusicInfoService musicInfoService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, MusicInfoService musicInfoService) {
         this.userService = userService;
+        this.musicInfoService = musicInfoService;
     }
 
     /**
-     * When accessing the /home end point will redirect to the home view
-     * @return {String} - returns the home string to view the thymeleaf home page
+     * When accessing /home will redirect to the home view. In addition, stores
+     * 2 list of music infos trending and likes to be displayed in home view
+     * @param model {object} - model object contains the likes and trending musicinfos
+     * @return {String} - returns the string home to view the thymeleaf home page
      */
     @GetMapping("/home")
-    public String homePage() {
+    public String homePage(Model model) {
+        List<MusicInfo> trending = musicInfoService.findTrendingSong();
+        model.addAttribute("trending", trending);
+        List<MusicInfo> likes = musicInfoService.findMostLikedSong();
+        model.addAttribute("likes", likes);
         return "home";
+    }
+
+    /**
+     * When accessing /about will redirect to the about view
+     * @return {String} - returns the string to about to view the thymeleaf view page
+     */
+    @GetMapping("/about")
+    public String about() {
+        return "about";
+    }
+
+    /**
+     * When a music card is clicked redirects to the musicinfopage
+     * @param mid {Long} - The mid that belongs to the click music
+     * @param model {Object} - model object contains the musicinfo of the clicked music
+     * @return {String} - returns the musicinfopage string to view the thymeleaf musicinfopage
+     */
+    @PostMapping("/click/musicInfo")
+    public String addToPlaylist(@RequestParam("mid") Long mid, Model model) {
+        MusicInfo clickedMusicInfo = musicInfoService.findMusicInfoByMid(mid);
+        model.addAttribute("clickedMusicInfo", clickedMusicInfo);
+        return "/musicinfopage";
     }
 
     /**

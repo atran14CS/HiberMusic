@@ -15,7 +15,7 @@
 <body>
     <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" th:href="@{/home}">PlaylistPulse</a>
+            <a class="navbar-brand" th:href="@{/home}">HiberMusic</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -34,16 +34,17 @@
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" th:href="@{/login}" href="#" >Login</a></li>
                                 <li><a class="dropdown-item" th:href="@{/signup}" href="#">Sigup</a></li>
+                                <li><a class="dropdown-item" th:href="@{/about}">About</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex mt-3" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-success" type="submit">Search</button>
-                    </form>
+<!--                    <form class="d-flex mt-3" role="search">-->
+<!--                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--                        <button class="btn btn-success" type="submit">Search</button>-->
+<!--                    </form>-->
                 </div>
             </div>
         </div>
@@ -64,7 +65,7 @@
 <!--            <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
 <!--            <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
 <!--        </div>-->
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Log In!</button>
         <p>Don't have an account? <a th:href="@{/signup}">Click Here</a></p>
     </form>
     <div class="alert alert-warning alert-dismissible fade show" role="alert" th:if="${param.logout}">

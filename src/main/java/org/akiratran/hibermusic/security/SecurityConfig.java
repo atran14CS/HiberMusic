@@ -30,8 +30,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authz) -> authz
                     .requestMatchers("/signup/**").permitAll()
                     .requestMatchers("/home").permitAll()
+                    .requestMatchers("click/musicInfo").permitAll()
+                    .requestMatchers("/about").permitAll()
                     .requestMatchers("/home").hasRole("USER").anyRequest().authenticated()
-//                    .requestMatchers("/profile").authenticated()
+//                    .requestMatchers("/profile/createPlaylist")
 //                    .requestMatchers("/profile/search").permitAll()
 //                    .requestMatchers("/profile/addToPlaylist").permitAll()
                 )

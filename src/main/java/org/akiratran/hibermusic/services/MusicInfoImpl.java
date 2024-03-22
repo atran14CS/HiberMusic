@@ -48,9 +48,32 @@ public class MusicInfoImpl implements MusicInfoService{
         return musicInfoRepository.findByArtistName(artistName);
     }
 
+    /**
+     * Finds the MusicInfos of the searchPhrase
+     * @param searchPhrase{String} - the song name or artist name
+     * @return {Object} Music info of the search phrase
+     */
     @Override
     public List<MusicInfo> findMusicInfoBySongNameOrArtistName(String searchPhrase) {
         return musicInfoRepository.findBySongNameOrArtistName(searchPhrase);
+    }
+
+    /**
+     * Finds the trendy songs
+     * @return {Object} - returns a list of MusicInfo representing the most viewed songs in order DESC
+     */
+    @Override
+    public List<MusicInfo> findTrendingSong() {
+        return musicInfoRepository.findTrendingSong();
+    }
+
+    /**
+     * Finds the most liked songs
+     * @return {Object} - returns a list of MusicInfo representing the most liked song in order DESC
+     */
+    @Override
+    public List<MusicInfo> findMostLikedSong() {
+        return musicInfoRepository.findMostLikedSong();
     }
 
     /**
@@ -65,7 +88,7 @@ public class MusicInfoImpl implements MusicInfoService{
         musicInfo.setViews(newMusicInfo.getViews());
         musicInfo.setLikes(newMusicInfo.getLikes());
         musicInfo.setMusicUser(musicInfo.getMusicUser());
-        musicInfo.setPlaylists(musicInfo.getPlaylists());
+//        musicInfo.setPlaylists(musicInfo.getPlaylists());
         musicInfoRepository.save(musicInfo);
     }
 }

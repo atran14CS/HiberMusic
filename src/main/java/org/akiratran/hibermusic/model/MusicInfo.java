@@ -31,9 +31,8 @@ public class MusicInfo {
     @ManyToMany(mappedBy = "userMusicInfo")
     private List<User> musicUser = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "musicInformation")
-    List<UserPlaylist> playlists = new ArrayList<>();
-
+//    @ManyToMany(mappedBy = "musicInformation")
+//    List<UserPlaylist> playlists = new ArrayList<>();
 
     public MusicInfo(String artistName, String songName, String mp3Link, int views, int likes, List<User> musicUser,
                      List<UserPlaylist> playlists) {
@@ -43,6 +42,6 @@ public class MusicInfo {
         this.views = views;
         this.likes = likes;
         this.musicUser = musicUser;
-        this.playlists = playlists;
+//        this.playlists = playlists;
     }
 }

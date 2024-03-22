@@ -35,7 +35,6 @@ public class LikeMusic {
     private MusicInfo musicInfo;
 
 
-
     public LikeMusic(User user, MusicInfo musicInfo, LocalDateTime likeDate) {
         this.user = user;
         this.musicInfo = musicInfo;

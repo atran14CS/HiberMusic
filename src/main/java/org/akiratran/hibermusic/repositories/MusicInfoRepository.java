@@ -17,4 +17,9 @@ public interface MusicInfoRepository extends JpaRepository<MusicInfo, Long> {
     List<MusicInfo> findBySongName(String songName); // finds the MusicInfo by songName
     List<MusicInfo> findByArtistName(String artistName); //finds the MusicInfo by the artistName
     MusicInfo save(MusicInfo musicInfo); //saves the new MusicInfo
+    @Query("SELECT m FROM MusicInfo m ORDER BY m.views DESC LIMIT 6")
+    List<MusicInfo> findTrendingSong();
+
+    @Query("SELECT m FROM MusicInfo m ORDER BY m.likes DESC LIMIT 6")
+    List<MusicInfo> findMostLikedSong();
 }

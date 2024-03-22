@@ -16,4 +16,6 @@ public interface MusicInfoService {
     List<MusicInfo> findMusicInfoByArtistName(String artistName);
     List<MusicInfo> findMusicInfoBySongName(String artistName);
     void saveMusicInfo(MusicInfo musicInfo);
+    List<MusicInfo> findTrendingSong();
+    List<MusicInfo> findMostLikedSong();
 }

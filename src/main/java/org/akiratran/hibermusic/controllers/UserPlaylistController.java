@@ -30,10 +30,7 @@ public class UserPlaylistController {
     private UserPlaylistService userPlaylistService;
     private MusicInfoService musicInfoService;
     private UserService userService;
-//    private LikeMusicService likeMusicService;
     private List<MusicInfo> temporaryPlaylist = new ArrayList<>();
-
-
 
     @Autowired
     public UserPlaylistController(UserPlaylistService userPlaylistService, MusicInfoService musicInfoService,
@@ -41,79 +38,40 @@ public class UserPlaylistController {
         this.userPlaylistService = userPlaylistService;
         this.musicInfoService = musicInfoService;
         this.userService = userService;
-//        this.likeMusicService = likeMusicService;
     }
 
-//    @PostMapping("/profile/addToPlaylist")
-//    public String addToPlaylist(@RequestParam("mid") Long mid, Model model) {
-//        // find the adding music
-//        System.out.println(mid); //debug statement
-//        MusicInfo clickedMusicInfo = musicInfoService.findMusicInfoByMid(mid);
-//        //create and add to playlist
-//        currentPlaylist.add(clickedMusicInfo);
-//        model.addAttribute("currentPlaylist", currentPlaylist);
-//
-//        return "redirect:/profile";
-//    }
-
-//        @PostMapping("/profile/addToPlaylist")
-//        public String addToPlaylist(@RequestParam("mid") Long mid, Model model) {
-//        currentPlaylist = new ArrayList<>();
-//        System.out.println(mid); //debug statement
-//        MusicInfo clickedMusicInfo = musicInfoService.findMusicInfoByMid(mid);
-//        //create and add to playlist
-//        currentPlaylist.add(clickedMusicInfo);
-//        System.out.println(currentPlaylist);
-//        model.addAttribute("currentPlaylist", currentPlaylist);
-//        return "redirect:/profile";
-//    }
-
-    // when click create playlist button
-    // use the userService method to return all the mid with the current uid
-    // from all the mid in thymeleaf loop through and use findMusicInfoByMid to
-    // get the musicinforamtion for mid to be displayed
-
-
-//    @PostMapping("/profile/addToPlaylist")
-//    public String addToPlaylist(@RequestParam("mid") Long mid, Model model, Principal principal) {
-//        //use the userService clas to add the user and the MusicInfo into the user_muisc table
-//        String email = principal.getName();
-//        User currentUser = userService.findByUserEmail(email);
-//        LocalDateTime likeDate = LocalDateTime.now();
-//        MusicInfo clickedMusic = musicInfoService.findMusicInfoByMid(mid);
-//
-////        MusicInfo clickedMusicInfo = musicInfoService.findMusicInfoByMid(mid);
-////        UserPlaylist newPlayList = new UserPlaylist();
-////
-////        List<MusicInfo> currentPlayList = newPlayList.getMusicInformation();
-////        currentPlayList.add(clickedMusicInfo);
-////        model.addAttribute("currentPlayList", currentPlayList);
-////        return "/profile";
-//    }
-
-
-//    @PostMapping("/profile/addToPlaylist")
-//    public String addToPlaylist(@RequestParam("mid") Long mid, Model model) {
-//        // find the adding music
-//        System.out.println(mid); //debug statement
-//        MusicInfo clickedMusicInfo = musicInfoService.findMusicInfoByMid(mid);
-//        //create and add to playlist
-//        UserPlaylist newPlaylist = new UserPlaylist();
-//        List<MusicInfo> currentPlaylist = newPlaylist.getMusicInformation();
-//        currentPlaylist.add(clickedMusicInfo);
-//        System.out.println(currentPlaylist);
-//        model.addAttribute("currentPlaylist", currentPlaylist);
-//        return "/profile";
-//    }
-
-    // Endpoint to add a song to the temporary playlist
+    /**
+     * Adds clicked music into a current playlist to show the current list of added music
+     * @param mid {Long} - The mid that belongs to added song
+     * @param model {Object} - The model object contains the current list of added music
+     * @return {String} - Returns the profile string to view the profile view page
+     */
     @PostMapping("/profile/addToPlaylist")
     public String addToPlaylist(@RequestParam("mid") Long mid, Model model) {
         MusicInfo clickedMusicInfo = musicInfoService.findMusicInfoByMid(mid);
         temporaryPlaylist.add(clickedMusicInfo);
-        System.out.println(temporaryPlaylist + "this is the temp playlist!!!!!!!!!!!!!!!!");
-        System.out.println(temporaryPlaylist.size() + "this is the size!!!!!!!!!!!");
+        System.out.println(temporaryPlaylist + " this is the temp playlist!!!!!!!!!!!!!!!!"); //debug statement
+        System.out.println(temporaryPlaylist.size() + " this is the size!!!!!!!!!!!"); //debug statement
         model.addAttribute("temporaryPlaylist", temporaryPlaylist);
+        System.out.println(temporaryPlaylist + " this is the playlist");
+        return "/profile";
+    }
+
+    @PostMapping("/profile/createPlaylist")
+    public String createPlaylist(Principal principal) {
+        String email = principal.getName();
+        System.out.println(email); //debug statement
+        User currentUser = userService.findByUserEmail(email);
+
+        UserPlaylist newPlayList = new UserPlaylist("newPlaylist1", currentUser, temporaryPlaylist);
+
+        System.out.println(newPlayList + " this is the current playlist made");
+//        System.out.println(currentUser.getPlaylists() + " this is the user playlists");
+//        userPlaylistService.savePlaylist(newPlayList);
+        //saving playlist to user playlists
+//        currentUser.getPlaylists().add(newPlayList);
+//        userService.saveUser(currentUser);
+        temporaryPlaylist.clear();
         return "redirect:/profile";
     }
 }
