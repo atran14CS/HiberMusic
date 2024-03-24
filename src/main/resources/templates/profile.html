@@ -14,7 +14,6 @@
     #form-hidden {
         display: none;
     }
-
 </style>
 <body>
     <nav class="navbar navbar-dark bg-dark fixed-top">
@@ -104,16 +103,17 @@
     <form th:action="@{/profile/deleted}" method="post">
         <button type="submit">Delete Account</button>
     </form>
-    <script>
-        // Displays the search bar
-        document.getElementById("create-btn").addEventListener("click", function() {
-            let createBox = document.getElementById("form-hidden");
-            if (createBox.style.display === "none") {
-                createBox.style.display = "block";
-            } else {
-                createBox.style.display = "none";
-            }
-        });
-    </script>
+<!--    <script>-->
+<!--        // Displays the search bar-->
+<!--        document.getElementById("create-btn").addEventListener("click", function() {-->
+<!--            let createBox = document.getElementById("form-hidden");-->
+<!--            if (createBox.style.display === "none") {-->
+<!--                createBox.style.display = "block";-->
+<!--            } else {-->
+<!--                createBox.style.display = "none";-->
+<!--            }-->
+<!--        });-->
+<!--    </script>-->
+    <script type="text/javascript" th:src="@{/js/profile/profile.js}"></script>
 </body>
 </html>
