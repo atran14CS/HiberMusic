@@ -45,13 +45,23 @@ public class User {
 //    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 //    private List<UserPlaylist> playlists;
 
+    /**
+     * All args constructor
+     * @param firstName {String} - First name of the user
+     * @param lastName {String} - Last name of the user
+     * @param email {String} - Email of the user
+     * @param location {String} - Location of the user
+     * @param password {String} - Password of the user
+     * @param userRole {String} - Role of the user
+     * @param playlists {Object} - Playlist of the user
+     */
     public User(String firstName, String lastName, String email, String location, String password, List<MusicInfo> userMusicInfo, List<Role> userRole, List<UserPlaylist> playlists) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.location = location;
         this.password = password;
-        this.userMusicInfo = userMusicInfo;
+//        this.userMusicInfo = userMusicInfo;
         this.userRole = userRole;
 //        playlists = new ArrayList<>();
 //        this.playlists = playlists;

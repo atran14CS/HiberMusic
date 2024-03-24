@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -87,6 +88,11 @@ public class UserController {
         return "profile";
     }
 
+    @GetMapping("/delete")
+    public String delete() {
+        return "delete";
+    }
+
     /**
      * Takes the input from the signup page and stores it in the model object
      * @param model - the input from the signup page
@@ -121,5 +127,12 @@ public class UserController {
         }
         userService.saveUser(newUser);
         return "redirect:/signup?success";
+    }
+
+    @PostMapping("/profile/deleted")
+    public String deleteUser(Principal principal) {
+        String email = principal.getName();
+        userService.deleteUser(email);
+        return "/delete";
     }
 }

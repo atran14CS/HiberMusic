@@ -26,6 +26,11 @@ public class Role {
     @ManyToMany(mappedBy = "userRole")
     List<User> roleUser = new ArrayList<>();
 
+    /**
+     * All args constructor
+     * @param roleName {String} - name of the role
+     * @param roleUser {Object} - list of users that share the role
+     */
     public Role(String roleName, List<User> roleUser) {
         this.roleName = roleName;
         this.roleUser = roleUser;

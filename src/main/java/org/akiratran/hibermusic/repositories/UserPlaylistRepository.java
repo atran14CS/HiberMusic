@@ -5,9 +5,8 @@ import org.akiratran.hibermusic.model.UserPlaylist;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Provides JPA methods to run sql query on USER table.
+ * Provides UserPlaylist access to CRUD operations from JpaRepository
  */
-
 public interface UserPlaylistRepository extends JpaRepository<UserPlaylist, Long> {
     UserPlaylist findByPid(long pid);
     UserPlaylist findByPlaylistName(String playlistName);

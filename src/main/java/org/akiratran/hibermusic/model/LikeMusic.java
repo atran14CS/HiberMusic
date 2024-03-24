@@ -35,6 +35,12 @@ public class LikeMusic {
     private MusicInfo musicInfo;
 
 
+    /**
+     * All args constructor
+     * @param user {Object} - The user of the like music
+     * @param musicInfo {Object} - Music info of the music
+     * @param likeDate {Object} - Date of when music was like
+     */
     public LikeMusic(User user, MusicInfo musicInfo, LocalDateTime likeDate) {
         this.user = user;
         this.musicInfo = musicInfo;

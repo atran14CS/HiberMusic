@@ -6,6 +6,7 @@ import org.akiratran.hibermusic.model.UserPlaylist;
 
 import java.util.List;
 
+
 public interface UserPlaylistService {
     void savePlaylist(UserPlaylist userPlaylist);
     UserPlaylist findByUserPlaylistName(String userPlaylistName);

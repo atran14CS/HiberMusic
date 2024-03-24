@@ -14,6 +14,10 @@ import java.util.List;
 public class MusicInfoImpl implements MusicInfoService{
     private MusicInfoRepository musicInfoRepository;
 
+    /**
+     * Constructs a new instance of the MusicInfoImpl
+     * @param musicInfoRepository {Object} - Repository contains methods for MusicInfo data manipulation
+     */
     public MusicInfoImpl(MusicInfoRepository musicInfoRepository) {
         this.musicInfoRepository = musicInfoRepository;
     }
@@ -26,26 +30,6 @@ public class MusicInfoImpl implements MusicInfoService{
     @Override
     public MusicInfo findMusicInfoByMid(Long mid) {
         return musicInfoRepository.findByMid(mid);
-    }
-
-    /**
-     * Finds the MusicInfos by the songName
-     * @param songName - name of the song
-     * @return {object} - list of MusicInfo pertaining to the song name
-     */
-    @Override
-    public List<MusicInfo> findMusicInfoBySongName(String songName) {
-        return musicInfoRepository.findBySongName(songName);
-    }
-
-    /**
-     * Finds the MusicInfos by the artistName
-     * @param artistName - name of the artist
-     * @return {Object} - list of MusicInfo pertaining to the artist
-     */
-    @Override
-    public List<MusicInfo> findMusicInfoByArtistName(String artistName) {
-        return musicInfoRepository.findByArtistName(artistName);
     }
 
     /**
@@ -87,7 +71,7 @@ public class MusicInfoImpl implements MusicInfoService{
         musicInfo.setMp3Link(newMusicInfo.getMp3Link());
         musicInfo.setViews(newMusicInfo.getViews());
         musicInfo.setLikes(newMusicInfo.getLikes());
-        musicInfo.setMusicUser(musicInfo.getMusicUser());
+//        musicInfo.setMusicUser(musicInfo.getMusicUser());
 //        musicInfo.setPlaylists(musicInfo.getPlaylists());
         musicInfoRepository.save(musicInfo);
     }

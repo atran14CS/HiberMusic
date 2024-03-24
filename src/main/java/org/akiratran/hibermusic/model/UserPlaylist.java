@@ -36,6 +36,12 @@ public class UserPlaylist {
             inverseJoinColumns = @JoinColumn(name = "mid", referencedColumnName = "mid"))
     private List<MusicInfo> musicInformation = new ArrayList<>();
 
+    /**
+     * All args constructor
+     * @param playlistName {String} - name of the playlist
+     * @param user {object} - user of this playlist
+     * @param musicInformation {object} music info of this playlist
+     */
     public UserPlaylist(String playlistName, User user, List<MusicInfo> musicInformation) {
         this.playlistName = playlistName;
         this.user = user;

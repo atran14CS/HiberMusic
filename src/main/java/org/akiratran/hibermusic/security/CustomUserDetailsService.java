@@ -9,15 +9,31 @@ import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
 
+
+/**
+ * This class implements the spring security interface to provide user-specific data during
+ * authentication
+ */
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-
     private UserRepository userRepository;
+
+    /**
+     * Constructs a new instance of CustomerUserDetailService with the provided userRepository
+     * @param userRepository {Object} - UserRepository used to retrieve user information
+     */
     public CustomUserDetailsService(UserRepository userRepository) {
         super();
         this.userRepository = userRepository;
     }
 
+    /**
+     * Retrieves user details by the provided email address.
+     * @param email {String} - the email of the user to load
+     * @return {Object} - returns userDetails object containing user details if found
+     * @throws UsernameNotFoundException - throws UsernameNotFoundException if no
+     * user is found with the provided email
+     */
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);
