@@ -72,9 +72,7 @@ public class UserPlaylistController {
         String email = principal.getName();
         System.out.println(email); //debug statement
         User currentUser = userService.findByUserEmail(email);
-
         UserPlaylist newPlayList = new UserPlaylist("newPlaylist1", currentUser, temporaryPlaylist);
-
         System.out.println(newPlayList + " this is the current playlist made");
 //        System.out.println(currentUser.getPlaylists() + " this is the user playlists");
 //        userPlaylistService.savePlaylist(newPlayList);

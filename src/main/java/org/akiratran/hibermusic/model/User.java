@@ -42,8 +42,8 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "rid", referencedColumnName = "rid"))
     private List<Role> userRole = new ArrayList<>();
 
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-//    private List<UserPlaylist> playlists;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserPlaylist> playlists;
 
     /**
      * All args constructor
@@ -53,7 +53,7 @@ public class User {
      * @param location {String} - Location of the user
      * @param password {String} - Password of the user
      * @param userRole {String} - Role of the user
-     * @param playlists {Object} - Playlist of the user
+     *
      */
     public User(String firstName, String lastName, String email, String location, String password, List<Role> userRole) {
         this.firstName = firstName;
