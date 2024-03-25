@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.util.List;
@@ -51,6 +52,15 @@ public class UserController {
         List<MusicInfo> likes = musicInfoService.findMostLikedSong();
         model.addAttribute("likes", likes);
         return "home";
+    }
+
+    @GetMapping("/")
+    public String home(Model model) {
+        List<MusicInfo> trending = musicInfoService.findTrendingSong();
+        model.addAttribute("trending", trending);
+        List<MusicInfo> likes = musicInfoService.findMostLikedSong();
+        model.addAttribute("likes", likes);
+        return "home"; // Assuming "home" is your home page template
     }
 
     /**
@@ -140,9 +150,10 @@ public class UserController {
      * @return {String} - returns the delete string to view the thymeleaf delete view
      */
     @PostMapping("/profile/deleted")
-    public String deleteUser(Principal principal) {
+    public String deleteUser(Principal principal, RedirectAttributes redirectAttributes) {
         String email = principal.getName();
         userService.deleteUser(email);
-        return "/delete";
+        redirectAttributes.addFlashAttribute("message", "Your account has been deleted");
+        return "redirect:/delete";
     }
 }
