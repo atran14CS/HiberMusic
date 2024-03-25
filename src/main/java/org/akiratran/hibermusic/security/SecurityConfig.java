@@ -47,7 +47,7 @@ public class SecurityConfig {
         http.csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests((authz) -> authz
                     .requestMatchers("/signup/**").permitAll()
-                    .requestMatchers("/js/**", "/styles/css/**").permitAll()
+                    .requestMatchers("/js/**", "/styles/css/**", "/images/**").permitAll()
                     .requestMatchers("/home").permitAll()
                     .requestMatchers("click/musicInfo").permitAll()
                     .requestMatchers("/about").permitAll()
