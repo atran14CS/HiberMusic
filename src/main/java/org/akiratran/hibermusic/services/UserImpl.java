@@ -51,6 +51,10 @@ public class UserImpl implements UserService{
         return userRepository.findByEmail(email);
     }
 
+//    public boolean userExist(String email) {
+//
+//    }
+
     /**
      * Deletes the user by the email
      * @param email {String} email of the user needed to be deleted

@@ -25,6 +25,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * controls the different endpoints around UserPlaylist
+ */
+
 @Controller
 public class UserPlaylistController {
     private UserPlaylistService userPlaylistService;
@@ -32,6 +36,12 @@ public class UserPlaylistController {
     private UserService userService;
     private List<MusicInfo> temporaryPlaylist = new ArrayList<>();
 
+    /**
+     * Creates a new Instance of the UserPlaylistController
+     * @param userPlaylistService {object}
+     * @param userService {Object} - contains methods use for User data manipulation
+     * @param musicInfoService {Object} - contains methods use for MusicInfo data manipulation
+     */
     @Autowired
     public UserPlaylistController(UserPlaylistService userPlaylistService, MusicInfoService musicInfoService,
                                   UserService userService) {

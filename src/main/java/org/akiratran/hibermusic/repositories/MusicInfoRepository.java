@@ -10,15 +10,14 @@ import java.util.List;
 /**
  * Provides MusicInfo access to CRUD operations from JpaRepository
  */
+
 public interface MusicInfoRepository extends JpaRepository<MusicInfo, Long> {
-    String FIND_BY_SONG_OR_ARTIST_QUERY = "SELECT m FROM MusicInfo m WHERE m.artistName like %:searchPhrase% or m.songName like %:searchPhrase";
-    String FIND_TRENDING_SONG_QUERY = "SELECT m FROM MusicInfo m ORDER BY m.views DESC LIMIT 6";
-    String FIND_MOST_LIKED_SONG_QUERY = "SELECT m FROM MusicInfo m ORDER BY m.likes DESC LIMIT 6";
+    public static final String FIND_BY_SONG_OR_ARTIST_QUERY = "SELECT m FROM MusicInfo m WHERE m.artistName like %:searchPhrase% or m.songName like %:searchPhrase";
+    public static final String FIND_TRENDING_SONG_QUERY = "SELECT m FROM MusicInfo m ORDER BY m.views DESC LIMIT 6";
+    public static final String FIND_MOST_LIKED_SONG_QUERY = "SELECT m FROM MusicInfo m ORDER BY m.likes DESC LIMIT 6";
     MusicInfo findByMid(long mid);
     @Query(FIND_BY_SONG_OR_ARTIST_QUERY)
     List<MusicInfo> findBySongNameOrArtistName(@Param("searchPhrase") String searchPhrase);
-    List<MusicInfo> findBySongName(String songName);
-    List<MusicInfo> findByArtistName(String artistName);
     MusicInfo save(MusicInfo musicInfo);
     @Query(FIND_TRENDING_SONG_QUERY)
     List<MusicInfo> findTrendingSong();

@@ -22,6 +22,10 @@ import java.util.List;
 public class MusicInfoController {
     private MusicInfoService musicInfoService;
 
+    /**
+     * Creates a new instance of the MusicInfoController
+     * @param musicInfoService {Object} - The class used to perform data manipulation of MusicInfos
+     */
     @Autowired
     public MusicInfoController(MusicInfoService musicInfoService) {
         this.musicInfoService = musicInfoService;

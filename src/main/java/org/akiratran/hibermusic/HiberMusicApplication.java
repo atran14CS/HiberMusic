@@ -3,6 +3,10 @@ package org.akiratran.hibermusic;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * runs the Application
+ */
+
 @SpringBootApplication
 public class HiberMusicApplication {
 

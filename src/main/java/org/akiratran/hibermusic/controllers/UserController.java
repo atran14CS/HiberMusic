@@ -27,6 +27,11 @@ public class UserController {
     private UserService userService;
     private MusicInfoService musicInfoService;
 
+    /**
+     * Creates a new instance of the UserController
+     * @param userService {Object} - contains methods use for User data manipulation
+     * @param musicInfoService {Object} - contains methods use for MusicInfo data manipulation
+     */
     @Autowired
     public UserController(UserService userService, MusicInfoService musicInfoService) {
         this.userService = userService;
@@ -49,7 +54,7 @@ public class UserController {
     }
 
     /**
-     * When accessing /about will redirect to the about view
+     * When accessing /about will redirect to the about view page
      * @return {String} - returns the string to about to view the thymeleaf view page
      */
     @GetMapping("/about")
@@ -129,6 +134,11 @@ public class UserController {
         return "redirect:/signup?success";
     }
 
+    /**
+     * Deletes the account
+     * @param principal {object} - The current authenticated user
+     * @return {String} - returns the delete string to view the thymeleaf delete view
+     */
     @PostMapping("/profile/deleted")
     public String deleteUser(Principal principal) {
         String email = principal.getName();
