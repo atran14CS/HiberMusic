@@ -67,6 +67,11 @@ public class UserPlaylistController {
         return "/profile";
     }
 
+    /**
+     * Creates a playlist for the user
+     * @param principal {Object} - the current authenticated user sign in
+     * @return {Object} - returns the created UserPlaylist
+     */
     @PostMapping("/profile/createPlaylist")
     public String createPlaylist(Principal principal) {
         String email = principal.getName();
